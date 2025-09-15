@@ -10,7 +10,7 @@ A modern, responsive landing page for an organic Chinese vegetable farm featurin
 
 ## 🚀 Live Demo
 
-Visit the live site: [Mohan Samanta’s  Organic Farm](https://mohansamantaorganicfirm.realshit.space/) *check out now, it's live 🚀🚀)*
+Visit the live site: [Mohan Samanta’s  Organic Farm](https://mohansamantaorganicfirm.realshit.space/) *(check out now, it's live 🚀🚀)*
 
 ## 📋 Table of Contents
 
