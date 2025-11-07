@@ -1,0 +1,25 @@
+# .github/workflows/cloudflare-pages.yml
+name: Deploy to Cloudflare Pages
+on: [push]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inject Secret Token
+        run: |
+          echo "<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{\"token\":\"${{ secrets.CF_ANALYTICS_TOKEN }}\"}'></script>" >> index.html
+          sed -i '/<\/head>/i \
+          <!-- Cloudflare Web Analytics --><script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;:&quot;${{ secrets.CF_ANALYTICS_TOKEN }}&quot;}"></script><!-- End Cloudflare Web Analytics -->' index.html
+
+      - name: Publish
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=mithai-gali
